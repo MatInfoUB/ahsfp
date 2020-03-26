@@ -2,8 +2,8 @@ from keras.models import Input, Model
 from keras.layers import Conv2D, MaxPooling2D, BatchNormalization, Dropout
 from keras.layers import Flatten, Dense
 import keras
-
 from sklearn.model_selection import train_test_split, KFold
+
 
 class Regressor:
 
