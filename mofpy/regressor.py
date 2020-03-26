@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split, KFold
 class Regressor:
 
     def __init__(self, random_state=None, optimizer=None, batch_size=100,
-                 input_shape=None, learning_rate=0.01, epochs=500):
+                 input_shape=None, learning_rate=0.001, epochs=50):
 
         self.random_state = random_state
         self.epochs = epochs
@@ -54,9 +54,9 @@ class Regressor:
         except:
             raise NotImplementedError('optimizer not implemented in keras')
         opt = self.optimizer(lr=self.learning_rate)
-        self.model.compile(optimizer=opt, metrics=['mse'])
+        self.model.compile(optimizer=opt, loss='mse')
 
-    def fit(self, X, y, kfold=True, n_fold=10, verbose=1):
+    def fit(self, X, y, kfold=False, n_fold=10, verbose=1):
 
         if self.model is None:
             raise NotImplementedError('Model not initialized')
@@ -64,14 +64,17 @@ class Regressor:
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
         if not kfold:
             self.training = self.model.fit(X_train, y_train, verbose=verbose, batch_size=self.batch_size,
-                                           epochs=self.epochs, validation_data=[X_test, y_test])
+                                           epochs=self.epochs, validation_data=(X_test, y_test))
         else:
-            folds = KFold(n_splits=n_fold, shuffle=True)
-            cv_scores = []
+            folds = KFold(n_splits=n_fold, shuffle=True, random_state=0)
+            self.cv_scores = []
             for train, val in folds.split(X_train, y_train):
                 self.compile()
                 self.model.fit(X_train[train], y_train[train], batch_size=self.batch_size, verbose=verbose,
                                epochs=self.epochs, validation_data=[X_train[val], y_train[val]])
-                cv_scores.append(self.model.evaluate(X_train[val], y_train[val]))
-        
+                self.cv_scores.append(self.model.evaluate(X_train[val], y_train[val]))
+
+    def predict(self, X):
+
+        return self.model.predict(X)
 

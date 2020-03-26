@@ -20,7 +20,7 @@ def load_input_data():
     for f in histogram_pickles_files:
         if f.endswith('pkl'):
             names.append(f.split('/')[-1].split('.')[0])
-            arr.append(pickle.load(open(f, 'r')))
+            arr.append(pickle.load(open(f, 'rb'), encoding='latin1'))
 
     X = np.asarray(arr)
 
