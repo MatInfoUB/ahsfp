@@ -3,6 +3,7 @@ from keras.layers import Conv2D, MaxPooling2D, BatchNormalization, Dropout
 from keras.layers import Flatten, Dense
 import keras
 from sklearn.model_selection import train_test_split, KFold
+from sklearn.metrics import r2_score
 
 
 class Regressor:
@@ -16,9 +17,9 @@ class Regressor:
         self.input_shape = input_shape
 
         if optimizer is None:
-            self.optimizer = 'Adam'
+            self.optimizer_name = 'Adam'
         else:
-            self.optimizer = optimizer
+            self.optimizer_name = optimizer
 
         self.learning_rate = learning_rate
         self.model = None
@@ -50,7 +51,7 @@ class Regressor:
     def compile(self):
 
         try:
-            self.optimizer = getattr(keras.optimizers, self.optimizer)
+            self.optimizer = getattr(keras.optimizers, self.optimizer_name)
         except:
             raise NotImplementedError('optimizer not implemented in keras')
         opt = self.optimizer(lr=self.learning_rate)
@@ -61,7 +62,7 @@ class Regressor:
         if self.model is None:
             raise NotImplementedError('Model not initialized')
 
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
         if not kfold:
             self.training = self.model.fit(X_train, y_train, verbose=verbose, batch_size=self.batch_size,
                                            epochs=self.epochs, validation_data=(X_test, y_test))
@@ -72,9 +73,17 @@ class Regressor:
                 self.compile()
                 self.model.fit(X_train[train], y_train[train], batch_size=self.batch_size, verbose=verbose,
                                epochs=self.epochs, validation_data=[X_train[val], y_train[val]])
-                self.cv_scores.append(self.model.evaluate(X_train[val], y_train[val]))
+                self.cv_scores.append(self.r_2_score(X_train[val], y_train[val]))
 
     def predict(self, X):
 
         return self.model.predict(X)
 
+    def r_2_score(self, X, y):
+
+        y_predict = self.model.predict(X)
+        return r2_score(y_true=y, y_pred=y_predict)
+
+    def residuals(self, X, y):
+
+        return y - self.model.predict(X).reshape(len(y))
