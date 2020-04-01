@@ -1,7 +1,8 @@
 import mofpy
 import seaborn as sns
+from mofpy.load_data import *
 
-X, y = mofpy.load_input_data()
+X, y = load_input_data()
 input_shape = X.shape[1:]
 model = mofpy.Regressor(input_shape=input_shape, epochs=100)
 
