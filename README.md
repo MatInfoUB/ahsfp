@@ -10,11 +10,11 @@ Scikit-Learn
 
 ##### How to use:
 
-######TODO
+###### TODO
 
 Training the model
 
-######Using a pre-trained model:
+###### Using a pre-trained model:
 
 Download the package using the following code:
 
