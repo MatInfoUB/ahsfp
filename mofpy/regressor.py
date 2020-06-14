@@ -6,7 +6,24 @@ from sklearn.model_selection import train_test_split, KFold
 from sklearn.metrics import r2_score
 
 
-class Regressor:
+class ConvLayer(Conv2D):
+
+    def __init__(self, filters=None):
+        """
+        Initialize ConvLayer.
+
+        Parameters
+        ----------
+
+        filters = number of convolution filters
+        """
+        super(ConvLayer, self).__init__(filters=filters,
+                                        kernel_size=(3, 3),
+                                        activation='relu',
+                                        padding='same')
+
+
+class RegressorModel:
 
     def __init__(self, random_state=None, optimizer='Adam', batch_size=100,
                  input_shape=None, learning_rate=0.001, epochs=50, model=None):
@@ -22,34 +39,29 @@ class Regressor:
     def build_model(self):
 
         inp = Input(shape=self.input_shape)
-        x = Conv2D(filters=32, kernel_size=(3, 3), activation='relu', padding='same')(inp)
-        x = Conv2D(filters=32, kernel_size=(3, 3), activation='relu', padding='same')(x)
+        x = ConvLayer(filters=32)(inp)
+        x = ConvLayer(filters=32)(x)
         x = MaxPooling2D(2, 2)(x)
         x = Dropout(0.3)(x)
         x = BatchNormalization(axis=-1)(x)
-        x = Conv2D(filters=64, kernel_size=(3, 3),activation='relu', padding='same')(x)
-        x = Conv2D(filters=64, kernel_size=(3, 3),activation='relu', padding='same')(x)
-        x = Conv2D(filters=64, kernel_size=(3, 3), activation='relu', padding='same')(x)
+        for i in range(3):
+            x = ConvLayer(filters=64)(x)
         x = MaxPooling2D(2, 2)(x)
         x = Dropout(0.3)(x)
         x = BatchNormalization(axis=-1)(x)
-        x = Conv2D(filters=128, kernel_size=(3, 3), activation='relu', padding='same')(x)
-        x = Conv2D(filters=128, kernel_size=(3, 3), activation='relu', padding='same')(x)
-        x = Conv2D(filters=128, kernel_size=(3, 3), activation='relu', padding='same')(x)
-        x = Conv2D(filters=128, kernel_size=(3, 3), activation='relu', padding='same')(x)
+        for i in range(4):
+            x = ConvLayer(filters=128)(x)
         x = MaxPooling2D(pool_size=(2, 2))(x)
+
         x = BatchNormalization(axis=-1)(x)
-        # x = Conv2D(filters=32, kernel_size=(3, 3), activation='relu')(x)
-        # x = Conv2D(filters=32, kernel_size=(3, 3), activation='relu')(x)
-        # x = MaxPooling2D(pool_size=(2, 2))(x)
-        # x = BatchNormalization(axis=-1)(x)
         x = Flatten()(x)
-        x = Dense(128, activation='relu')(x)
-        x = Dropout(0.3)(x)
-        x = BatchNormalization(axis=-1)(x)
-        x = Dense(128, activation='relu')(x)
-        x = Dropout(0.3)(x)
-        x = BatchNormalization(axis=-1)(x)
+
+        for i in range(2):
+
+            x = Dense(128, activation='relu')(x)
+            x = Dropout(0.3)(x)
+            x = BatchNormalization(axis=-1)(x)
+
         output = Dense(1)(x)
         model = Model(inp, output)
         self.model = model

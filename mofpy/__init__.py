@@ -1,3 +1,4 @@
-from .regressor import Regressor
+from .regressor import RegressorModel
 from .diagnostics import Activation
-__all__ = [Regressor, Activation]
+
+__all__ = [RegressorModel, Activation]
