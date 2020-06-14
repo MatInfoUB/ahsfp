@@ -2,11 +2,21 @@
 
 This software package takes an arbitary crystal structure to predict material properties.
 
+#### Table of Contents
+
+- [Prerequisites](#prerequisites)
+- [How to Use](#how-to-use)
+- [How to Cite](#how-to-cite)
+- [Data](#data)
+- [Authors](#authors)
+- [License](#license)
+
 ##### Prerequisites
 
-Pandas
-Keras (with Tensorflow 1.8.0)
-Scikit-Learn
+- [Pandas](#https://pandas.pydata.org/)
+- [Keras](#https://keras.io/) (with [Tensorflow](#https://www.tensorflow.org/) backend)
+- [Scikit-Learn](https://scikit-learn.org/stable/)
+
 
 ##### How to use:
 
