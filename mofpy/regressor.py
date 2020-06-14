@@ -9,7 +9,7 @@ from sklearn.metrics import r2_score
 class Regressor:
 
     def __init__(self, random_state=None, optimizer='Adam', batch_size=100,
-                 input_shape=None, learning_rate=0.001, epochs=50):
+                 input_shape=None, learning_rate=0.001, epochs=50, model=None):
 
         self.random_state = random_state
         self.epochs = epochs
@@ -17,26 +17,26 @@ class Regressor:
         self.input_shape = input_shape
         self.optimizer_name = optimizer
         self.learning_rate = learning_rate
-        self.model = None
+        self.model = model
 
     def build_model(self):
 
         inp = Input(shape=self.input_shape)
-        x = Conv2D(filters=32, kernel_size=(3, 3), activation='relu')(inp)
-        x = Conv2D(filters=32, kernel_size=(3, 3), activation='relu')(x)
+        x = Conv2D(filters=32, kernel_size=(3, 3), activation='relu', padding='same')(inp)
+        x = Conv2D(filters=32, kernel_size=(3, 3), activation='relu', padding='same')(x)
         x = MaxPooling2D(2, 2)(x)
         x = Dropout(0.3)(x)
         x = BatchNormalization(axis=-1)(x)
-        x = Conv2D(filters=64, kernel_size=(3, 3),activation='relu')(x)
-        x = Conv2D(filters=64, kernel_size=(3, 3),activation='relu')(x)
-        x = Conv2D(filters=64, kernel_size=(3, 3), activation='relu')(x)
+        x = Conv2D(filters=64, kernel_size=(3, 3),activation='relu', padding='same')(x)
+        x = Conv2D(filters=64, kernel_size=(3, 3),activation='relu', padding='same')(x)
+        x = Conv2D(filters=64, kernel_size=(3, 3), activation='relu', padding='same')(x)
         x = MaxPooling2D(2, 2)(x)
         x = Dropout(0.3)(x)
         x = BatchNormalization(axis=-1)(x)
-        x = Conv2D(filters=128, kernel_size=(3, 3), activation='relu')(x)
-        x = Conv2D(filters=128, kernel_size=(3, 3), activation='relu')(x)
-        x = Conv2D(filters=128, kernel_size=(3, 3), activation='relu')(x)
-        x = Conv2D(filters=128, kernel_size=(3, 3), activation='relu')(x)
+        x = Conv2D(filters=128, kernel_size=(3, 3), activation='relu', padding='same')(x)
+        x = Conv2D(filters=128, kernel_size=(3, 3), activation='relu', padding='same')(x)
+        x = Conv2D(filters=128, kernel_size=(3, 3), activation='relu', padding='same')(x)
+        x = Conv2D(filters=128, kernel_size=(3, 3), activation='relu', padding='same')(x)
         x = MaxPooling2D(pool_size=(2, 2))(x)
         x = BatchNormalization(axis=-1)(x)
         # x = Conv2D(filters=32, kernel_size=(3, 3), activation='relu')(x)

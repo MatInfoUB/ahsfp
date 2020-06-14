@@ -1,3 +1,3 @@
 from .regressor import Regressor
-
-__all__ = [Regressor]
+from .diagnostics import Activation
+__all__ = [Regressor, Activation]

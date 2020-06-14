@@ -58,6 +58,46 @@ def load_input_data(filtering_type=1):
 
     return X, y, output
 
+
 def name_maker(formula, ID):
     return 'converted_cifs'+formula+'_'+str(ID)+'_input.pkl'
+
+
+def load_new_data():
+
+    histogram_pickles_dir = os.path.join('data',
+                                         'SA_interpolated_histogram_pickles_100_new')
+    output = pd.read_csv(os.path.join('data', 'data_file.csv'))
+    output.columns = output.columns.str.strip()
+    newfilelist = os.listdir(histogram_pickles_dir)
+
+    histogram_pickles_files = []
+    inds = []
+    for ind, row in output.iterrows():
+        filename = name_maker(row.formula, row.ID)
+        if filename in newfilelist:
+            histogram_pickles_files.append(os.path.join(histogram_pickles_dir, filename))
+            inds.append(ind)
+
+    names = []
+    arr = []
+    for f in histogram_pickles_files:
+        if f.endswith('pkl'):
+            names.append(f.split('/')[-1].split('.')[0])
+            arr.append(pickle.load(open(f, 'rb'), encoding='latin1'))
+
+    output = output.iloc[inds]
+    output['X'] = arr
+
+    output = output.sort_values(by='ID')
+
+    y = output['relaxed'].values
+    X = output['X']
+
+    X = np.asarray([x.tolist() for x in X])
+    image_shape = X.shape
+
+    X = X.reshape(image_shape[0], image_shape[1], image_shape[2], 1)
+
+    return X, y, output
 
