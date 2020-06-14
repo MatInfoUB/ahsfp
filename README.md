@@ -1,4 +1,4 @@
-# Deep Learning based Prediction of Perovskite Lattice Parameters from Hirshfeld Surface Fingerprints
+# Atomic Hirshfeld Surface Fingerprint
 
 This software package takes an arbitary crystal structure to predict material properties.
 
