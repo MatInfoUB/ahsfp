@@ -2,6 +2,8 @@
 
 This software package takes an arbitary crystal structure to predict material properties.
 
+![Architecture](architecture.png)
+
 #### Table of Contents
 
 - [Prerequisites](#prerequisites)
