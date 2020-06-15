@@ -51,10 +51,10 @@ Alternately it can be used by one of the following codes:
 
 <table align="center">
 <td align="center">
-<img src="https://github.com/arpanisi/ahsfp/blob/master/figs/old_lattice.png" alt="Old Lattice Parameter" width="300px" />
+<img src="https://github.com/arpanisi/ahsfp/blob/master/figs/old_lattice.png" alt="Old Lattice Parameter" width="450px" />
 </td>
 <td align="center">
-<img src="https://github.com/arpanisi/ahsfp/blob/master/figs/new_lattice.png" alt="Old Lattice Parameter" width="300px" />
+<img src="https://github.com/arpanisi/ahsfp/blob/master/figs/new_lattice.png" alt="Old Lattice Parameter" width="450px" />
 </td>
 </table>
 
