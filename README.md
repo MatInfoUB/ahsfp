@@ -40,7 +40,7 @@ This creates a conda environment along with installing the prerequisites. Activa
 
 `conda activate mofpy`
 
-Navigate to the folder `/mof_single_atom_hs` and type:
+Navigate to the folder `/ahsfp` and type:
 
 `python predict.py`
 
