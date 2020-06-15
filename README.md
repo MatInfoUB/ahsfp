@@ -49,8 +49,15 @@ Alternately it can be used by one of the following codes:
 `python predict.py --parameter old_lattice` and
 `python predict.py --parameter new_lattice`. The output of both the commands give the following output
 
-![old_lattice](figs/old_lattice.png)
-![new_lattice](figs/new_lattice.png)
+<table align="center">
+<td align="center">
+<img src="https://github.com/arpanisi/ahsfp/blob/master/figs/old_lattice.png" alt="Old Lattice Parameter" width="300px" />
+</td>
+<td align="center">
+<img src="https://github.com/arpanisi/ahsfp/blob/master/figs/new_lattice.png" alt="Old Lattice Parameter" width="300px" />
+</td>
+</table>
+
 
 #### How to cite
 
