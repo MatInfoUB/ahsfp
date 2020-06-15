@@ -34,15 +34,15 @@ Download the package using the following code:
 
 Use conda to create an environment as:
 
-`conda create -n mofpy python=3.7 scikit-learn keras tensorflow`
+`conda create -n ahsfp python=3.7 scikit-learn keras tensorflow`
 
 This creates a conda environment along with installing the prerequisites. Activate the environemnt by:
 
-`conda activate mofpy`
+`conda activate ahsfp`
 
 Navigate to the folder `/ahsfp` and type:
 
-`python predict.py`
+`(ahsfp) working_directory/ahsfp$ python predict.py`
 
 Alternately it can be used by one of the following codes:
 
