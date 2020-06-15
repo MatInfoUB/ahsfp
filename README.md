@@ -2,7 +2,7 @@
 
 This software package takes an arbitary crystal structure to predict material properties.
 
-![Architecture](architecture.png)
+![Architecture](figs/architecture.png)
 
 #### Table of Contents
 
@@ -43,6 +43,14 @@ This creates a conda environment along with installing the prerequisites. Activa
 Navigate to the folder `/mof_single_atom_hs` and type:
 
 `python predict.py`
+
+Alternately it can be used by one of the following codes:
+
+`python predict.py --parameter old_lattice` and
+`python predict.py --parameter new_lattice`. The output of both the commands give the following output
+
+![old_lattice](figs/old_lattice.png)
+![new_lattice](figs/new_lattice.png)
 
 #### How to cite
 
