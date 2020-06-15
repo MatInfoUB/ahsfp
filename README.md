@@ -18,6 +18,7 @@ This software package takes an arbitary crystal structure to predict material pr
 - [Pandas](#https://pandas.pydata.org/)
 - [Keras](#https://keras.io/) (with [Tensorflow](#https://www.tensorflow.org/) backend)
 - [Scikit-Learn](https://scikit-learn.org/stable/)
+- [Seaborn](https://seaborn.pydata.org/) (for visualization)
 
 
 ##### How to use:
