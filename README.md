@@ -68,6 +68,39 @@ TODO
 
 TODO
 
+#### Architecture
+
+The complete network architecture of ahsfp is given below:
+
+| Name               | Output Shapes       | Parameters |
+|--------------------|---------------------|------------|
+| InputLayer         | (None, 50, 50, 1)   | 0          |
+| Conv2D             | (None, 50, 50, 32)  | 320        |
+| Conv2D             | (None, 50, 50, 32)  | 9248       |
+| MaxPooling2D       | (None, 25, 25, 32)  | 0          |
+| Dropout            | (None, 25, 25, 32)  | 0          |
+| BatchNormalization | (None, 25, 25, 32)  | 128        |
+| Conv2D             | (None, 25, 25, 64)  | 18496      |
+| Conv2D             | (None, 25, 25, 64)  | 36928      |
+| Conv2D             | (None, 25, 25, 64)  | 36928      |
+| MaxPooling2D       | (None, 12, 12, 64)  | 0          |
+| Dropout            | (None, 12, 12, 64)  | 0          |
+| BatchNormalization | (None, 12, 12, 64)  | 256        |
+| Conv2D             | (None, 12, 12, 128) | 73856      |
+| Conv2D             | (None, 12, 12, 128) | 147584     |
+| Conv2D             | (None, 12, 12, 128) | 147584     |
+| Conv2D             | (None, 12, 12, 128) | 147584     |
+| MaxPooling2D       | (None, 6, 6, 128)   | 0          |
+| BatchNormalization | (None, 6, 6, 128)   | 512        |
+| Flatten            | (None, 4608)        | 0          |
+| Dense              | (None, 128)         | 589952     |
+| Dropout            | (None, 128)         | 0          |
+| BatchNormalization | (None, 128)         | 512        |
+| Dense              | (None, 128)         | 16512      |
+| Dropout            | (None, 128)         | 0          |
+| BatchNormalization | (None, 128)         | 512        |
+| Dense              | (None, 1)           | 129        |
+
 #### Authors
 
 This software is written by Arpan Mukherjee. Data Collection and analysis by Logan Williams. 
