@@ -12,7 +12,7 @@ val_id = [id in pred_table['Id'].to_list() for
 
 
 input_shape = X.shape[1:]
-model = mofpy.Regressor(input_shape=input_shape, epochs=100, batch_size=300)
+model = mofpy.Regressor(input_shape=input_shape, epochs=1400, batch_size=300)
 
 model.build_model()
 model.compile()
