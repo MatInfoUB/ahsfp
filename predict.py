@@ -1,8 +1,7 @@
 from ahsfp.load_data import *
+from ahsfp.utils import *
 import ahsfp
 from keras.models import load_model
-import matplotlib.pyplot as plt
-import seaborn as sns
 import argparse
 
 parser = argparse.ArgumentParser()
@@ -11,6 +10,7 @@ parser.add_argument('--parameter', choices=['old_lattice', 'new_lattice'],
 parser.add_argument('--model_dir', default='pretrained', help='Directory of pretrained model')
 parser.add_argument('--model_file', default='new_lattice_model.h5', help='Name of the pretrained model')
 parser.add_argument('--data_dir', default='None', help='Directory of custom data')
+parser.add_argument('--vis', default=True, choices=[True, False], type=bool, help='Choose if observed vs predicted plot is shown')
 
 FLAGS = parser.parse_args()
 
@@ -18,7 +18,7 @@ parameter = FLAGS.parameter
 model_dir = FLAGS.model_dir
 model_file = FLAGS.model_file
 data_dir = FLAGS.data_dir
-
+vis = FLAGS.vis
 
 sns.set_context('talk')
 
@@ -45,12 +45,8 @@ def predict():
     X_val = X[val_id]
     y_val = y[val_id]
 
-    y_pred = model.predict(X_val).reshape(y_val.size)
-    prediction = pd.DataFrame({'Observed': y_val, 'Predicted': y_pred})
-
-    sns.jointplot(x='Observed', y='Predicted', data=prediction)
-    plt.savefig('figs/' + parameter, bbox_inches='tight', dpi=300)
-    plt.show()
+    if vis:
+        plot_result(X=X_val, y=y_val, model=model, filename='figs/' + parameter)
     print('The R2 score for the whole dataset is: ', model.r_2_score(X_val, y_val))
 
 
