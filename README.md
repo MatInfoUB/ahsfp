@@ -106,6 +106,10 @@ The complete network architecture of ahsfp is given below:
 This software is written by Arpan Mukherjee. Data Collection and analysis by Logan Williams. 
 Arpan and Logan were advised by Prof. Krishna Rajan
 
+Please use the following article to cite our work:
+
+Williams, Logan, Arpan Mukherjee, and Krishna Rajan. "Deep Learning Based Prediction of Perovskite Lattice Parameters from Hirshfeld Surface Fingerprints." The Journal of Physical Chemistry Letters 11.17 (2020): 7462-7468.
+
 #### License
 
 released under the MIT License
