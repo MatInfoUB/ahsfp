@@ -17,11 +17,14 @@ class CifParser:
         atom_init_file = os.path.join(datadir, 'atom_init.json')
         assert os.path.exists(atom_init_file), 'atom_init.json does not exist!'
 
-        self.id_prop_data = pd.read_csv(id_prop_file)
+        self.id_prop_data = pd.read_csv(id_prop_file, header=None)  # Use header=0, if there is a header
         self.atom_init_data = pd.read_json(atom_init_file)
+        cols = self.atom_init_data.columns
 
         self.atom_types = self.atom_init_data.columns.to_list()
-        self.list_cifs = [os.path.join(datadir, f) for f in os.listdir(datadir) if f.endswith('cif')]
+        # self.list_cifs = [os.path.join(datadir, f) for f in os.listdir(datadir) if f.endswith('cif')]
+        self.list_cifs = [os.path.join(datadir, str(f) + '.cif') for
+                          f in self.id_prop_data[cols[0]]]   # Better use this
 
     def gdf_expand(self, distances, dmin=0, dmax=10, step=0.1, tol=1e-3):
 
