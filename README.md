@@ -15,8 +15,8 @@ This software package takes an arbitary crystal structure to predict material pr
 
 ##### Prerequisites
 
-- [Pandas](#https://pandas.pydata.org/)
-- [Keras](#https://keras.io/) (with [Tensorflow](#https://www.tensorflow.org/) backend)
+- [Pandas](https://pandas.pydata.org/)
+- [Keras](https://keras.io/) (with [Tensorflow](https://www.tensorflow.org/) backend)
 - [Scikit-Learn](https://scikit-learn.org/stable/)
 - [Seaborn](https://seaborn.pydata.org/) (for visualization)
 
@@ -105,6 +105,10 @@ The complete network architecture of ahsfp is given below:
 
 This software is written by Arpan Mukherjee. Data Collection and analysis by Logan Williams. 
 Arpan and Logan were advised by Prof. Krishna Rajan
+
+Please use the following article to cite our work:
+
+Williams, Logan, Arpan Mukherjee, and Krishna Rajan. "Deep Learning Based Prediction of Perovskite Lattice Parameters from Hirshfeld Surface Fingerprints." The Journal of Physical Chemistry Letters 11.17 (2020): 7462-7468.
 
 #### License
 
